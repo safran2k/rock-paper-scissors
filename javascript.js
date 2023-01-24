@@ -3,7 +3,7 @@ function getComputerChoice(){
     return choice;
 }
 
-function choiceToText(choiceAsNumber){
+function changeChoiceToText(choiceAsNumber){
     switch (choiceAsNumber) {
         case 0:
             return "Rock";
@@ -19,7 +19,7 @@ function choiceToText(choiceAsNumber){
     }
 }
 
-function choiceToNumber(choiceAsWord) {
+function changeChoiceToNumber(choiceAsWord) {
     choiceAsWord = choiceAsWord.toString().toUpperCase();
     switch (choiceAsWord) {
         case "ROCK":
@@ -44,13 +44,13 @@ function calculateWinner(playerSelection, computerSelection) {
     // it's 2 steps ahead (equivalent to 1 step behind), it loses.
     switch (matchResult) {
         case 0:
-            alert(`It was a draw! You both selected ${choiceToText(playerSelection)}`);
+            alert(`It was a draw! You both selected ${changeChoiceToText(playerSelection)}`);
             break;
         case 1:
-            alert(`The computer won! You selected ${choiceToText(playerSelection)} and the computer selected ${choiceToText(computerSelection)}!`);
+            alert(`The computer won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
             break;
         case 2:
-            alert(`You won! You selected ${choiceToText(playerSelection)} and the computer selected ${choiceToText(computerSelection)}!`);
+            alert(`You won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
             break;
         default:
             break;
@@ -60,7 +60,7 @@ function calculateWinner(playerSelection, computerSelection) {
 
 function getPlayerChoice(){
     let userInputChoice = prompt("Please enter your choice, you may select either Rock, Paper or Scissors");
-    let choice = choiceToNumber(userInputChoice.toUpperCase());
+    let choice = changeChoiceToNumber(userInputChoice.toUpperCase());
     // console.log(choice);
     return choice;
 }
@@ -69,7 +69,7 @@ function playRound() {
     const playerSelection = getPlayerChoice(),
         computerSelection = getComputerChoice();
     
-    console.log(`player choice: ${choiceToText(playerSelection)}, \t computer choice: ${choiceToText(computerSelection)}`);
+    console.log(`player choice: ${changeChoiceToText(playerSelection)}, \t computer choice: ${changeChoiceToText(computerSelection)}`);
     return calculateWinner(playerSelection, computerSelection);
     
 }
