@@ -17,6 +17,7 @@ function changeChoiceToText(choiceAsNumber){
         default:
             return "Computer was unable to make a choice :/";
     }
+
 }
 
 function changeChoiceToNumber(choiceAsWord) {
