@@ -1,3 +1,5 @@
+let gameStatus = document.querySelector('#game-status');
+
 function getComputerChoice(){
     const choice = (Math.floor(Math.random()*3));
     return choice;
@@ -44,13 +46,13 @@ function calculateWinner(playerSelection, computerSelection) {
     // it's 2 steps ahead (equivalent to 1 step behind), it loses.
     switch (matchResult) {
         case 0:
-            alert(`It was a draw! You both selected ${changeChoiceToText(playerSelection)}`);
+            gameStatus.textContent = (`It was a draw! You both selected ${changeChoiceToText(playerSelection)}`);
             break;
         case 1:
-            alert(`The computer won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
+            gameStatus.textContent = (`The computer won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
             break;
         case 2:
-            alert(`You won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
+            gameStatus.textContent = (`You won! You selected ${changeChoiceToText(playerSelection)} and the computer selected ${changeChoiceToText(computerSelection)}!`);
             break;
         default:
             break;
@@ -103,7 +105,38 @@ function game(){
     // alert(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
     console.log(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
     return `Game complete, user ${matchOutcome}`;
-}  
+}
+
+function game2(playerSelection, computerSelection){
+    // alert("You will now be playing 5 rounds of Fire Water Grass against the computer!");
+    console.log("You will now be playing 5 rounds of Fire Water Grass against the computer!");
+    let wins = 0, draws = 0, losses = 0;
+    // for (let i=0; i<5; i++) {
+        let roundResult = calculateWinner(playerSelection, computerSelection);
+        switch (roundResult) {
+            case 0:
+                draws++;
+                break;
+            case 1:
+                losses++;
+                break;
+            case 2:
+                wins++;
+                break;
+            default:
+                break;
+            }
+    // }
+    let matchOutcome;
+    if(wins != losses) {
+        matchOutcome = wins > losses ? "won" : "lost";
+    } else {
+        matchOutcome = "drew";
+    }
+    // alert(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
+    console.log(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
+    return `Game complete, user ${matchOutcome}`;
+}
 
 
 
@@ -114,5 +147,25 @@ function game(){
 const rpsSelectors = document.querySelectorAll('.rps-selector');
 rpsSelectors.forEach(rps => rps.addEventListener('click', () => {
     console.log(`click: ${changeChoiceToNumber(rps.id)}`);
+    const playerSelection = changeChoiceToNumber(rps.id);
+    const computerSelection = getComputerChoice();
+    let userWins = document.querySelector('#userWins');
+    let computerWins = document.querySelector('#computerWins');
+
+    let roundResult = calculateWinner(playerSelection, computerSelection);
+    switch (roundResult) {
+        // case 0:
+        //     draws++;
+        //     break;
+        case 1:
+            computerWins.textContent = (+computerWins.textContent+ 1);
+            break;
+        case 2:
+            // userWins.textContent = +userWins.textContent++; //not sure why this doesnt work but the one below does
+            userWins.textContent = (+userWins.textContent+ 1);
+            break;
+        default:
+            break;
+        }
 }));
 

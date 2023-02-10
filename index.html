@@ -5,9 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="javascript.js"></script>
-    <h1>Please access the console to play Rock Paper Scissors!</h1>
+    <!-- <h1>Please access the console to play Rock Paper Scissors!</h1> -->
+    <div>
+        <div class="flex">
+            <p class ="player-name-para">You</p>
+            <p class ="player-name-para">CPU</p>
+        </div>
+        <div class="flex">
+            <p id="userWins" class="scorePara">0</p>
+            <p id="computerWins" class="scorePara">0</p>
+        </div>
+    </div>
+
+    <p id="game-status"></p>
+
+    <div id="container">
+        <div id="fire" class="rps-selector">
+            <!-- <p>
+                fire/rock
+            </p> -->
+            <img src="images/fire.jpg">
+        </div>
+        <div id="grass" class="rps-selector">
+            <img src="images/leaf.jpg">
+            <!-- <p>
+                grass/paper
+            </p> -->
+        </div>
+        <div id="water" class="rps-selector">
+            <img src="images/water.jpg">
+        </div>
+        <script src="javascript2.js"></script>
+    </div>
 </body>
 </html>
