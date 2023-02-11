@@ -1,7 +1,7 @@
 # rock-paper-scissors
 Rock paper scissors interactive game
 
-An alternative to the classical Rock Paper Scissors game, with identical mechanics but cooler visuals! The element approach (fire, water, grass) was inspired by the Pokémon game series! Game plays up to 5 rounds, and displays winner when first person reaches 5 points.
+An alternative to the classical Rock Paper Scissors game, with identical mechanics but cooler visuals! The element approach (fire, water, grass) was inspired by the Pokémon game series! Game plays rounds until first person reaches 5 points, and displays the winner when this happens.
 
 
 CREDIT FOR IMAGES ----------
