@@ -1,4 +1,8 @@
 let gameStatus = document.querySelector('#game-status');
+const container = document.querySelector('#container');
+const playAgain = document.querySelector('#play-again');
+const overallWinner = document.querySelector('#overall-winner');
+const maxRoundWins = 5;
 
 function getComputerChoice(){
     const choice = (Math.floor(Math.random()*3));
@@ -22,15 +26,14 @@ function changeChoiceToText(choiceAsNumber){
 }
 
 function changeChoiceToNumber(choiceAsWord) {
-    choiceAsWord = choiceAsWord.toString().toUpperCase();
     switch (choiceAsWord) {
-        case "FIRE":
+        case "fire":
             return 0;
             break;
-        case "WATER":
+        case "water":
             return 1;
             break;
-        case "GRASS":
+        case "grass":
             return 2;
             break;
         default:
@@ -56,116 +59,59 @@ function calculateWinner(playerSelection, computerSelection) {
             break;
         default:
             break;
-        }
-        return matchResult;
     }
-
-function getPlayerChoice(){
-    let userInputChoice = prompt("Please enter your choice, you may select either Fire, Water or Grass");
-    let choice = changeChoiceToNumber(userInputChoice.toUpperCase());
-    // console.log(choice);
-    return choice;
+    return matchResult;
 }
 
-function playRound() {
-    const playerSelection = getPlayerChoice(),
-        computerSelection = getComputerChoice();
+function checkWinner(){
+    if(+computerWins.textContent == maxRoundWins) {
+        container.style.display = "none";
+        playAgain.style.display = "block";
+        overallWinner.style.display = "block";
+        overallWinner.textContent = "OVERALL WINNER: CPU. You lose!";
+    } else if (+userWins.textContent == maxRoundWins) {
+        container.style.display = "none";
+        playAgain.style.display = "block";
+        overallWinner.style.display = "block";
+        overallWinner.textContent = "OVERALL WINNER: You. Congratulations, you win!";
+    }
+}
+
+// function showPlayAgain() {
+
+// }
+
+
     
-    console.log(`player choice: ${changeChoiceToText(playerSelection)}, \t computer choice: ${changeChoiceToText(computerSelection)}`);
-    return calculateWinner(playerSelection, computerSelection);
-    
-}
-
-function game(){
-    // alert("You will now be playing 5 rounds of Fire Water Grass against the computer!");
-    console.log("You will now be playing 5 rounds of Fire Water Grass against the computer!");
-    let wins = 0, draws = 0, losses = 0;
-    // for (let i=0; i<5; i++) {
-        let roundResult = playRound();
-        switch (roundResult) {
-            case 0:
-                draws++;
-                break;
-            case 1:
-                losses++;
-                break;
-            case 2:
-                wins++;
-                break;
-            default:
-                break;
-            }
-    // }
-    let matchOutcome;
-    if(wins != losses) {
-        matchOutcome = wins > losses ? "won" : "lost";
-    } else {
-        matchOutcome = "drew";
-    }
-    // alert(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
-    console.log(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
-    return `Game complete, user ${matchOutcome}`;
-}
-
-function game2(playerSelection, computerSelection){
-    // alert("You will now be playing 5 rounds of Fire Water Grass against the computer!");
-    console.log("You will now be playing 5 rounds of Fire Water Grass against the computer!");
-    let wins = 0, draws = 0, losses = 0;
-    // for (let i=0; i<5; i++) {
-        let roundResult = calculateWinner(playerSelection, computerSelection);
-        switch (roundResult) {
-            case 0:
-                draws++;
-                break;
-            case 1:
-                losses++;
-                break;
-            case 2:
-                wins++;
-                break;
-            default:
-                break;
-            }
-    // }
-    let matchOutcome;
-    if(wins != losses) {
-        matchOutcome = wins > losses ? "won" : "lost";
-    } else {
-        matchOutcome = "drew";
-    }
-    // alert(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
-    console.log(`You had ${wins} win${(wins==1 ? "" : "s")}, ${losses} loss${(losses==1 ? "" : "es")} and ${draws} draw${(draws==1 ? "" : "s")} with the computer! Overall you ${matchOutcome}!`);
-    return `Game complete, user ${matchOutcome}`;
-}
-
-
-
-
-
-
-
-const rpsSelectors = document.querySelectorAll('.rps-selector');
-rpsSelectors.forEach(rps => rps.addEventListener('click', () => {
-    console.log(`click: ${changeChoiceToNumber(rps.id)}`);
-    const playerSelection = changeChoiceToNumber(rps.id);
-    const computerSelection = getComputerChoice();
     let userWins = document.querySelector('#userWins');
     let computerWins = document.querySelector('#computerWins');
-
-    let roundResult = calculateWinner(playerSelection, computerSelection);
-    switch (roundResult) {
-        // case 0:
-        //     draws++;
-        //     break;
-        case 1:
-            computerWins.textContent = (+computerWins.textContent+ 1);
+    const rpsSelectors = document.querySelectorAll('.rps-selector');
+    rpsSelectors.forEach(rps => rps.addEventListener('click', () => {
+        console.log(`click: ${changeChoiceToNumber(rps.id)}`);
+        const playerSelection = changeChoiceToNumber(rps.id);
+        const computerSelection = getComputerChoice();
+        
+        
+        let roundResult = calculateWinner(playerSelection, computerSelection);
+        switch (roundResult) {
+            case 1:
+                computerWins.textContent = (+computerWins.textContent+ 1);
             break;
-        case 2:
-            // userWins.textContent = +userWins.textContent++; //not sure why this doesnt work but the one below does
-            userWins.textContent = (+userWins.textContent+ 1);
+            case 2:
+                // userWins.textContent = +userWins.textContent++; //not sure why this doesnt work but the one below does
+                userWins.textContent = +userWins.textContent+ 1;
             break;
-        default:
+            default:
             break;
         }
-}));
-
+        checkWinner();
+        
+    }));
+    
+    playAgain.addEventListener('click', () => {
+        playAgain.style.display = "none";
+        overallWinner.style.display = "none";
+        container.style.display = "flex";
+        computerWins.textContent = 0;
+        userWins.textContent = 0;
+    });

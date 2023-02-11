@@ -1,6 +1,10 @@
-/* *{
-    border: solid rgb(9, 255, 0)
-} */
+*{
+    /* border: solid rgb(9, 255, 0); */
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
 
 body{
     display: flex;
@@ -17,16 +21,9 @@ body{
     justify-content: space-evenly;
 }
 
-.player-name-para, #game-status{
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-}
-
 .scorePara{
     font-size: 48px;
     font-weight: 900;
-    text-align: center;
 }
 
 #container{
@@ -40,7 +37,6 @@ body{
 }
 
 .rps-selector{
-    text-align: center;
     /* height: 200px;
     width: 200px; */
     /* background-color: slategrey; */
@@ -48,8 +44,20 @@ body{
     font-size: x-large;
 }
 
-#fire{
-    /* background-image: url("images/fire.jpg");
-    height: 200px;
-    width: 200px; */
+#play-again{
+    font-size: 72px;
+    font-weight: 800;
+    align-self: center;
+    background-color: bisque;
+    color: black;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 20px;
+    display: none;
 }
+
+#overall-winner{
+    display: none;
+    font-size: 40px;
+}
+
