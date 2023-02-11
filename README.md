@@ -3,7 +3,7 @@ Rock paper scissors interactive game
 
 An alternative to the classical Rock Paper Scissors game, with identical mechanics but cooler visuals! The element approach (fire, water, grass) was inspired by the Pokémon game series! Game plays rounds until first person reaches 5 points, and displays the winner when this happens.
 
-Please see the live preview at: [a link](https://safran2k.github.io/rock-paper-scissors/index.html)
+[Live preview](https://safran2k.github.io/rock-paper-scissors/index.html)`rgb(9, 255, 0)`
 
 
 CREDIT FOR IMAGES ----------
