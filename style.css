@@ -31,6 +31,7 @@ body{
     /* justify-self: center;
     margin-top: auto;
     margin-bottom: auto; */
+    flex-wrap: wrap;
 
 }
 
